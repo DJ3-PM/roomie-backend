@@ -1,5 +1,9 @@
 const express = require('express')
+
+const db = require('./db')
+
 const app = express()
+db.connect()
 
 const { config } = require('../config/index')
 
@@ -10,5 +14,5 @@ app.get('/', (req, res, next) => {
 })
 
 app.listen(config.port, () => {
-  console.log(`Listening http://localhost:${config.port}`)
+  console.log(`Listening on: http://localhost:${config.port}`)
 })
