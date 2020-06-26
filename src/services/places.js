@@ -20,6 +20,11 @@ const getPlaces = () => {
   return places
 }
 
+const getOnePlace = ({ placeId }) => {
+  const place = PlaceModel.findById(placeId)
+  return place
+}
+
 const deletePlace = ({ placeId }) => {
   const deletedPlace = PlaceModel.deleteOne({ _id: placeId })
   return deletedPlace
@@ -34,5 +39,6 @@ module.exports = {
   createPlace,
   getPlaces,
   deletePlace,
-  updatePlace
+  updatePlace,
+  getOnePlace
 }

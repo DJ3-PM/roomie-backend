@@ -20,6 +20,20 @@ const placesRoutes = app => {
     }
   })
 
+  // ? Gets one place
+  router.get('/:placeId', async (req, res, next) => {
+    const { placeId } = req.params
+    try {
+      const place = await placesService.getOnePlace({ placeId })
+      res.status(200).json({
+        data: place,
+        message: 'Place found'
+      })
+    } catch (error) {
+      next(error)
+    }
+  })
+
   // ? Creates a new place
   router.post('/', async (req, res, next) => {
     const place = req.body
