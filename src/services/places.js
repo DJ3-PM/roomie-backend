@@ -25,8 +25,14 @@ const deletePlace = ({ placeId }) => {
   return deletedPlace
 }
 
+const updatePlace = ({ placeId, placeData }) => {
+  const updatedPlace = PlaceModel.updateOne({ _id: placeId }, placeData)
+  return updatedPlace
+}
+
 module.exports = {
   createPlace,
   getPlaces,
-  deletePlace
+  deletePlace,
+  updatePlace
 }

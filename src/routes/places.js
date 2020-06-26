@@ -50,6 +50,24 @@ const placesRoutes = app => {
       next(error)
     }
   })
+
+  // ? Updates a Place
+  router.put('/:placeId', async (req, res, next) => {
+    const { placeId } = req.params
+    const placeData = req.body
+
+    try {
+      const { nModified } = await placesService.updatePlace({ placeId, placeData })
+      res.status(200).json({
+        data: {
+          nModified
+        },
+        message: 'Place updated!'
+      })
+    } catch (error) {
+      next(error)
+    }
+  })
 }
 
 module.exports = placesRoutes
