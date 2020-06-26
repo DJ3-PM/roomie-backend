@@ -1,13 +1,15 @@
 const express = require('express')
 
+const { config } = require('../config/index')
 const db = require('./db')
 
 const app = express()
+
+// ? Stablish database connection
 db.connect()
 
-const { config } = require('../config/index')
-
-// app.use(express.json());
+// ? Middlewares
+app.use(express.json())
 
 app.get('/', (req, res, next) => {
   res.send('xd')
