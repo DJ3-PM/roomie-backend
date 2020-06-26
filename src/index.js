@@ -5,10 +5,10 @@ const { config } = require('../config/index')
 
 // app.use(express.json());
 
-app.get('/', function (req, res) {
+app.get('/', (req, res, next) => {
   res.send('xd')
 })
 
-app.listen(config.port, function () {
+app.listen(config.port, () => {
   console.log(`Listening http://localhost:${config.port}`)
 })
