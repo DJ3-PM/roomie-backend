@@ -4,13 +4,23 @@ const placesService = require('../services/places')
 
 const placesRoutes = app => {
   const router = express.Router()
-
   app.use('/api/places', router)
 
-  router.get('/', (req, res, next) => {
-    res.status(200).json({ hello: 'world' })
+  // ? Lists all the places
+  router.get('/', async (req, res, next) => {
+    try {
+      const places = await placesService.getPlaces()
+
+      res.status(200).json({
+        data: places,
+        message: 'Places listed!'
+      })
+    } catch (error) {
+      next(error)
+    }
   })
 
+  // ? Creates a new place
   router.post('/', async (req, res, next) => {
     const place = req.body
     try {

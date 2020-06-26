@@ -15,6 +15,12 @@ const createPlace = place => {
   })
 }
 
+const getPlaces = () => {
+  const places = PlaceModel.find({}) // returns a promise
+  return places
+}
+
 module.exports = {
-  createPlace
+  createPlace,
+  getPlaces
 }
