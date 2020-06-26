@@ -20,7 +20,13 @@ const getPlaces = () => {
   return places
 }
 
+const deletePlace = ({ placeId }) => {
+  const deletedPlace = PlaceModel.deleteOne({ _id: placeId })
+  return deletedPlace
+}
+
 module.exports = {
   createPlace,
-  getPlaces
+  getPlaces,
+  deletePlace
 }

@@ -33,6 +33,23 @@ const placesRoutes = app => {
       next(error)
     }
   })
+
+  // ? Deletes a place
+  router.delete('/:placeId', async (req, res, next) => {
+    const { placeId } = req.params
+    try {
+      const { deletedCount } = await placesService.deletePlace({ placeId })
+
+      res.status(200).json({
+        data: {
+          deletedCount
+        },
+        message: 'Place deleted'
+      })
+    } catch (error) {
+      next(error)
+    }
+  })
 }
 
 module.exports = placesRoutes
