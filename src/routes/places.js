@@ -1,6 +1,36 @@
 const express = require('express')
-
+const aws = require('aws-sdk')
+const multer = require('multer')
+const multerS3 = require('multer-s3')
+const { awsAccessKey, awsSecretAccessKey } = require('../../config')
 const placesService = require('../services/places')
+
+// ? Amazon S3 Config
+aws.config.update({
+  secretAccessKey: awsSecretAccessKey,
+  accessKeyId: awsAccessKey,
+  region: 'us-east-2'
+})
+
+const s3 = new aws.S3()
+
+// ? Multer with S3 config
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'buscando-roomie', // name of the bucket  in S3
+    acl: 'public-read', // setting to be  able to request images
+    metadata: (req, file, callback) => {
+      callback(null, { fieldName: file.fieldname })
+    },
+    key: (req, file, callback) => {
+      //  This might be buggy...
+      const splittedName = file.originalname.split('.')
+      const extension = splittedName[splittedName.length - 1]
+      callback(null, `${Date.now()}.${extension}`)
+    }
+  })
+})
 
 const placesRoutes = app => {
   const router = express.Router()
@@ -35,8 +65,12 @@ const placesRoutes = app => {
   })
 
   // ? Creates a new place
-  router.post('/', async (req, res, next) => {
+  router.post('/', upload.single('image'), async (req, res, next) => {
     const place = req.body
+    const { file } = req
+
+    place.mainImage = file.location // add AWS S3 image url to object
+
     try {
       const createdPlaceId = await placesService.createPlace(place)
       res.status(201).json({

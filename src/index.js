@@ -1,24 +1,25 @@
-const express = require("express");
+const express = require('express')
 
-const { port } = require("../config");
-const db = require("./db");
-const placesRoutes = require("./routes/places");
+const { port } = require('../config')
+const db = require('./db')
+const placesRoutes = require('./routes/places')
 
-const app = express();
+const app = express()
 
 // ? Stablish database connection
-db.connect();
+db.connect()
 
 // ? Middlewares
-app.use(express.json());
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 
-app.get("/", (req, res, next) => {
-  res.send(":D");
-});
+app.get('/', (req, res, next) => {
+  res.send(':D')
+})
 
 // ? Routes
-placesRoutes(app);
+placesRoutes(app)
 
 app.listen(port, () => {
-  console.log(`Listening on: http://localhost:${port}`);
-});
+  console.log(`Listening on: http://localhost:${port}`)
+})
