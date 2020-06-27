@@ -1,6 +1,6 @@
 const express = require('express')
-
 const placesService = require('../services/places')
+const imageUpload = require('../utils/middlewares/imageUpload')
 
 const placesRoutes = app => {
   const router = express.Router()
@@ -35,8 +35,12 @@ const placesRoutes = app => {
   })
 
   // ? Creates a new place
-  router.post('/', async (req, res, next) => {
+  router.post('/', imageUpload.single('image'), async (req, res, next) => {
     const place = req.body
+    const { file } = req
+
+    place.mainImage = file.location // add AWS S3 image url to object
+
     try {
       const createdPlaceId = await placesService.createPlace(place)
       res.status(201).json({
