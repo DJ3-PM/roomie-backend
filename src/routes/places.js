@@ -1,6 +1,7 @@
 const express = require('express')
 const placesService = require('../services/places')
 const imageUpload = require('../utils/middlewares/imageUpload')
+const { placeFields } = require('../utils/uploadFields')
 
 const placesRoutes = app => {
   const router = express.Router()
@@ -35,11 +36,18 @@ const placesRoutes = app => {
   })
 
   // ? Creates a new place
-  router.post('/', imageUpload.single('image'), async (req, res, next) => {
+  router.post('/', imageUpload.fields(placeFields), async (req, res, next) => {
+    // TODO: Fix furniture string bug, has to be an array
     const place = req.body
-    const { file } = req
 
-    place.mainImage = file.location // add AWS S3 image url to object
+    // ?  <Logic to get AWS S3 images urls>
+    // TODO: Try to modularize into it's own middleware
+    const [singleImage, multiImages] = placeFields
+    const { files } = req
+
+    place.mainImage = files[singleImage.name][0].location
+    place.images = files[multiImages.name].map(image => image.location)
+    // ? </Logic to get AWS S3 images urls>
 
     try {
       const createdPlaceId = await placesService.createPlace(place)

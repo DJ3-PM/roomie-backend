@@ -15,6 +15,12 @@ const placeSchema = new Schema({
     type: String,
     required: true
   },
+  images: [
+    {
+      type: String,
+      required: true
+    }
+  ],
   price: {
     type: Number,
     required: true
