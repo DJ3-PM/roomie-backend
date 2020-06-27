@@ -37,6 +37,7 @@ const placesRoutes = app => {
 
   // ? Creates a new place
   router.post('/', imageUpload.fields(placeFields), async (req, res, next) => {
+    // TODO: Fix furniture string bug, has to be an array
     const place = req.body
 
     // ?  <Logic to get AWS S3 images urls>
