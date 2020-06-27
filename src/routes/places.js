@@ -39,14 +39,14 @@ const placesRoutes = app => {
   router.post('/', imageUpload.fields(placeFields), async (req, res, next) => {
     const place = req.body
 
+    // ?  <Logic to get AWS S3 images urls>
     // TODO: Try to modularize into it's own middleware
-    // ? Logic to get AWS S3 images urls
     const [singleImage, multiImages] = placeFields
     const { files } = req
 
     place.mainImage = files[singleImage.name][0].location
     place.images = files[multiImages.name].map(image => image.location)
-    console.log('place', place)
+    // ? </Logic to get AWS S3 images urls>
 
     try {
       const createdPlaceId = await placesService.createPlace(place)
