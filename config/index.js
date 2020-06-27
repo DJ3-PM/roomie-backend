@@ -10,4 +10,4 @@ const config = {
 }
 
 // ? quick fix while we decide a convention on how to use config file
-module.exports = { config, ...config }
+module.exports = config

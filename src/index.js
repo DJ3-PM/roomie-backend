@@ -1,6 +1,6 @@
 const express = require('express')
 
-const { config } = require('../config/index')
+const { port } = require('../config')
 const db = require('./db')
 const placesRoutes = require('./routes/places')
 
@@ -19,6 +19,6 @@ app.get('/', (req, res, next) => {
 // ? Routes
 placesRoutes(app)
 
-app.listen(config.port, () => {
-  console.log(`Listening on: http://localhost:${config.port}`)
+app.listen(port, () => {
+  console.log(`Listening on: http://localhost:${port}`)
 })
