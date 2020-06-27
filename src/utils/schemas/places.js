@@ -3,6 +3,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const placeSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
   location: {
     type: String,
     required: true
@@ -19,7 +23,15 @@ const placeSchema = new Schema({
     {
       type: String
     }
-  ]
+  ],
+  size: {
+    type: Number,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  }
 })
 
 const schema = mongoose.model('Place', placeSchema)
