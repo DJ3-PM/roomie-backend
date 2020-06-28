@@ -5,6 +5,7 @@ const db = require('./db')
 const placesRoutes = require('./routes/places')
 const authRoutes = require('./routes/auth')
 const profileRoutes = require('./routes/profile')
+const favoritesRoutes = require('./routes/favorites')
 
 const app = express()
 
@@ -23,6 +24,7 @@ app.get('/', (req, res, next) => {
 placesRoutes(app)
 authRoutes(app)
 profileRoutes(app)
+favoritesRoutes(app)
 
 app.listen(port, () => {
   console.log(`Listening on: http://localhost:${port}`)
