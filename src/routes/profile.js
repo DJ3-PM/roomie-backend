@@ -7,6 +7,8 @@ const profileRoutes = app => {
 
   app.use('/api/profile', router)
 
+  // ? Creates a Profile
+  // TODO: Add imageUpload Middleware for avatar
   router.post('/', async (req, res, next) => {
     const profile = req.body
 
@@ -19,6 +21,11 @@ const profileRoutes = app => {
     } catch (error) {
       next(error)
     }
+  })
+
+  // TODO: Update/Modify Profile
+  router.put('/:profileId', (req, res, next) => {
+
   })
 }
 

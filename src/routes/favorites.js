@@ -20,6 +20,16 @@ const favoritesRoutes = app => {
       next(error)
     }
   })
+
+  // TODO: Get User Favorites
+  router.get('/:userId', (req, res, next) => {
+
+  })
+
+  // TODO: Delete a User Favorite
+  router.delete('/:favoriteId', (req, res, next) => {
+
+  })
 }
 
 module.exports = favoritesRoutes
