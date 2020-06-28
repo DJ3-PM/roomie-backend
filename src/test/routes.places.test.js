@@ -2,7 +2,7 @@
 const assert = require('assert')
 const proxyquire = require('proxyquire')
 
-const { placesMock, placesServiceMock } = require('../utils/mocks/places')
+const { placesMock, placeMock, testId, placesServiceMock } = require('../utils/mocks/places')
 const testServer = require('../utils/testServer')
 
 describe('Routes -> Places', () => {
@@ -33,6 +33,33 @@ describe('Routes -> Places', () => {
         assert.strict.deepEqual(res.body, {
           data: placesMock,
           message: 'Places listed!'
+        })
+        done()
+      })
+    })
+  })
+
+  describe('GET /api/places/:placeId', () => {
+    it('Should respond with Status 200', done => {
+      request.get(`/api/places/${testId}`).expect(200, done)
+    })
+
+    it('Should respond with Content-type = application/json', done => {
+      request.get(`/api/places/${testId}`).expect('Content-type', /json/, done)
+    })
+
+    it('Should NOT respond with error', done => {
+      request.get(`/api/places/${testId}`).end((error, res) => {
+        assert.strict.deepEqual(error, null)
+        done()
+      })
+    })
+
+    it('Should respond with the requested place', done => {
+      request.get(`/api/places/${testId}`).end((_error, res) => {
+        assert.strict.deepEqual(res.body, {
+          data: placeMock,
+          message: 'Place found'
         })
         done()
       })

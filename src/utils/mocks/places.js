@@ -41,6 +41,8 @@ const placesMock = [
   }
 ]
 
+const testId = '5ef7e0a4b33c9103c7a1554d'
+
 const createPlace = async place => {
   return Promise.resolve(placesMock[0])
 }
@@ -49,10 +51,17 @@ const getPlaces = async () => {
   return Promise.resolve(placesMock)
 }
 
+const getOnePlace = async ({ placeId }) => {
+  return Promise.resolve(placesMock[1])
+}
+
 module.exports = {
   placesMock,
+  placeMock: placesMock[1],
+  testId,
   placesServiceMock: {
     createPlace,
-    getPlaces
+    getPlaces,
+    getOnePlace
   }
 }
