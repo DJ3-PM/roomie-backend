@@ -3,6 +3,7 @@ const express = require('express')
 const { port } = require('../config')
 const db = require('./db')
 const placesRoutes = require('./routes/places')
+const authRoutes = require('./routes/auth')
 
 const app = express()
 
@@ -19,6 +20,7 @@ app.get('/', (req, res, next) => {
 
 // ? Routes
 placesRoutes(app)
+authRoutes(app)
 
 app.listen(port, () => {
   console.log(`Listening on: http://localhost:${port}`)
