@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
+// TODO: Add reference to Profile Schema
 const placeSchema = new Schema({
   name: {
     type: String,
