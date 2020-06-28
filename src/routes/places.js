@@ -22,6 +22,7 @@ const placesRoutes = app => {
   })
 
   // ? Gets one place
+  // TODO: Get Profile info for detail
   router.get('/:placeId', async (req, res, next) => {
     const { placeId } = req.params
     try {
