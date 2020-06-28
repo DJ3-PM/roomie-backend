@@ -2,12 +2,15 @@ const bcrypt = require('bcrypt')
 const UserSchema = require('../utils/schemas/users')
 
 const createUser = async ({ user }) => {
-  const { username, password } = user
+  const { username, password, firstname, lastname } = user
 
   const hashedPassword = await bcrypt.hash(password, 10)
+
   const newUser = {
     username,
-    password: hashedPassword
+    password: hashedPassword,
+    firstname,
+    lastname
   }
 
   const myUser = new UserSchema(newUser)
