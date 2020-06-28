@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const HostSchema = new Schema({
+const ProfileSchema = new Schema({
   avatar: {
     type: String,
     required: true
@@ -25,6 +25,6 @@ const HostSchema = new Schema({
   }
 })
 
-const schema = mongoose.model('Host', HostSchema)
+const schema = mongoose.model('Profile', ProfileSchema)
 
 module.exports = schema
