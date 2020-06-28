@@ -5,6 +5,7 @@ const authRoutes = app => {
   const router = express.Router()
   app.use('/api/auth', router)
 
+  // ? Creates a new user
   router.post('/sign-up', async (req, res, next) => {
     const user = req.body
 

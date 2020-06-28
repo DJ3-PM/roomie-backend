@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt')
-const UserSchema = require('../utils/schemas/user')
+const UserSchema = require('../utils/schemas/users')
 
 const createUser = async ({ user }) => {
   const { username, password } = user
