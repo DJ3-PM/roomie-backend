@@ -7,17 +7,30 @@ const ProfileSchema = new Schema({
     type: String,
     required: true
   },
-  publicEmail: {
+  firstname: {
     type: String,
     required: true
+  },
+  lastname: {
+    type: String,
+    required: true
+  },
+  isHost: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
+  contactEmail: {
+    type: String,
+    required: false
   },
   whatsapp: {
     type: String,
-    required: true
+    required: false
   },
   about: {
     type: String,
-    required: true
+    required: false
   },
   userId: {
     type: Schema.Types.ObjectId,

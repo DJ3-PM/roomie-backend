@@ -12,7 +12,7 @@ const profileRoutes = app => {
 
     try {
       const createdProfileId = await ProfileService.createProfile({ profile })
-      res.status(200).json({
+      res.status(201).json({
         data: createdProfileId,
         message: 'Profile created!'
       })
