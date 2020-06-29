@@ -6,7 +6,7 @@ const placesRoutes = require('./routes/places')
 const authRoutes = require('./routes/auth')
 const profileRoutes = require('./routes/profile')
 const favoritesRoutes = require('./routes/favorites')
-
+const { errorLogger, errorWrapper, errorHandler } = require('./utils/middlewares/errorMiddlewares')
 const app = express()
 
 // ? Stablish database connection
@@ -25,6 +25,11 @@ placesRoutes(app)
 authRoutes(app)
 profileRoutes(app)
 favoritesRoutes(app)
+
+// ? Error Middlewares
+app.use(errorLogger)
+app.use(errorWrapper)
+app.use(errorHandler)
 
 app.listen(port, () => {
   console.log(`Listening on: http://localhost:${port}`)
