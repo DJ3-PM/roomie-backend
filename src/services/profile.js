@@ -6,8 +6,8 @@ const createProfile = ({ profile }) => {
   return new Promise((resolve, reject) => {
     myProfile.save((error, createdProfile) => {
       if (error) {
-        // TODO: Handle Error:
-        console.log(error)
+        // TODO: Better Handle Error:
+        throw new Error(error)
       }
 
       resolve(createdProfile.id)
