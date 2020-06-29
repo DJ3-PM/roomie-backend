@@ -7,8 +7,12 @@ mongoose.Promise = global.Promise
 
 const connect = async () => {
   try {
-    await mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    console.log('[DB] Connected successfully! 🎊')
+    await mongoose.connect(mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false
+    })
+    console.log('🎊 [DB] Connected successfully! 🎊')
   } catch (error) {
     console.log(error)
   }

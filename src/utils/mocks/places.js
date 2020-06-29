@@ -3,47 +3,51 @@
 const placesMock = [
   {
     images: [
-      'https://buscando-roomie.s3.us-east-2.amazonaws.com/1593292094741.jpg',
-      'https://buscando-roomie.s3.us-east-2.amazonaws.com/1593292094768.png'
+      'https://buscando-roomie.s3.us-east-2.amazonaws.com/1593404934227.jpg',
+      'https://buscando-roomie.s3.us-east-2.amazonaws.com/1593404934253.png'
     ],
     available: true,
     furniture: [
       'sillas',
       'cosas',
-      'mueble'
+      'mueble',
+      'cañita'
     ],
-    _id: '5ef7b54492ba3f13e1593914',
-    name: 'Súper departamento',
-    location: 'Altotonga',
+    _id: '5ef96e0b7ed5f20a42a212b3',
+    name: 'Centro de Caña',
+    location: 'Mahuixtlan',
     price: 1500,
     size: 50,
-    description: 'El merísimo centro',
-    mainImage: 'https://buscando-roomie.s3.us-east-2.amazonaws.com/1593292094736.jpeg',
+    description: 'Antigua casa productora de Caña',
+    profileId: '5ef81d486b354a0cc743f968',
+    mainImage: 'https://buscando-roomie.s3.us-east-2.amazonaws.com/1593404934221.jpeg',
     __v: 0
   },
   {
     images: [
-      'https://buscando-roomie.s3.us-east-2.amazonaws.com/1593303198308.jpg',
-      'https://buscando-roomie.s3.us-east-2.amazonaws.com/1593303198334.png'
+      'https://buscando-roomie.s3.us-east-2.amazonaws.com/1593406403226.jpg',
+      'https://buscando-roomie.s3.us-east-2.amazonaws.com/1593406403272.png'
     ],
     available: true,
     furniture: [
       'sillas',
-      'cosas',
-      'mueble'
+      'cafe',
+      'mueble',
+      'sofa'
     ],
-    _id: '5ef7e0a4b33c9103c7a1554d',
-    name: 'Súper departamento',
-    location: 'Altotonga',
-    price: 1500,
-    size: 50,
-    description: 'El merísimo centro',
-    mainImage: 'https://buscando-roomie.s3.us-east-2.amazonaws.com/1593303198304.jpeg',
+    _id: '5ef973c8c981cb0b85c89fe1',
+    name: 'Hacienda Cafetalera',
+    location: 'Coatepec',
+    price: 3000,
+    size: 100,
+    description: 'Antigua casa productora de Café',
+    profileId: '5ef81d486b354a0cc743f968',
+    mainImage: 'https://buscando-roomie.s3.us-east-2.amazonaws.com/1593406403207.jpeg',
     __v: 0
   }
 ]
 
-const testId = '5ef7e0a4b33c9103c7a1554d'
+const testId = '5ef973c8c981cb0b85c89fe1'
 
 const createPlace = async place => {
   return Promise.resolve(testId)
