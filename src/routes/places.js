@@ -1,6 +1,7 @@
 const express = require('express')
 const placesService = require('../services/places')
 const imageUpload = require('../utils/middlewares/imageUpload')
+const imageUrlStractor = require('../utils/middlewares/imageUrlStractor')
 const { placeFields } = require('../utils/uploadFields')
 
 const placesRoutes = app => {
@@ -37,31 +38,25 @@ const placesRoutes = app => {
   })
 
   // ? Creates a new place
-  router.post('/', imageUpload.fields(placeFields), async (req, res, next) => {
-    const place = req.body
+  router.post('/',
+    imageUpload.fields(placeFields), // AWS Upload Middleware
+    imageUrlStractor({ fields: placeFields }), // AWS Image URL Stractor
+    async (req, res, next) => {
+      const place = req.body
 
-    //  Converts string to an array on elements
-    place.furniture = place.furniture.split(',').map(item => item.trim())
+      // Converts string to an array of elements
+      place.furniture = place.furniture.split(',').map(item => item.trim())
 
-    // ?  <Logic to get AWS S3 images urls>
-    // TODO: Try to modularize into it's own middleware
-    const [singleImage, multiImages] = placeFields
-    const { files } = req
-
-    place.mainImage = files[singleImage.name][0].location
-    place.images = files[multiImages.name].map(image => image.location)
-    // ? </Logic to get AWS S3 images urls>
-
-    try {
-      const createdPlaceId = await placesService.createPlace(place)
-      res.status(201).json({
-        data: createdPlaceId,
-        message: 'Place created!'
-      })
-    } catch (error) {
-      next(error)
-    }
-  })
+      try {
+        const createdPlaceId = await placesService.createPlace(place)
+        res.status(201).json({
+          data: createdPlaceId,
+          message: 'Place created!'
+        })
+      } catch (error) {
+        next(error)
+      }
+    })
 
   // ? Deletes a place
   router.delete('/:placeId', async (req, res, next) => {
