@@ -57,6 +57,10 @@ const getOnePlace = async ({ placeId }) => {
   return Promise.resolve(placesMock[1])
 }
 
+const deletePlace = async ({ placeId }) => {
+  return Promise.resolve({ deletedCount: 1 })
+}
+
 module.exports = {
   placesMock,
   placeMock: placesMock[1],
@@ -64,6 +68,7 @@ module.exports = {
   placesServiceMock: {
     createPlace,
     getPlaces,
-    getOnePlace
+    getOnePlace,
+    deletePlace
   }
 }
