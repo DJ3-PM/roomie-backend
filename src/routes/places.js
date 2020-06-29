@@ -1,6 +1,7 @@
 const express = require('express')
-
 const placesService = require('../services/places')
+const imageUpload = require('../utils/middlewares/imageUpload')
+const { placeFields } = require('../utils/uploadFields')
 
 const placesRoutes = app => {
   const router = express.Router()
@@ -21,6 +22,7 @@ const placesRoutes = app => {
   })
 
   // ? Gets one place
+  // TODO: Get Profile info for detail
   router.get('/:placeId', async (req, res, next) => {
     const { placeId } = req.params
     try {
@@ -35,8 +37,21 @@ const placesRoutes = app => {
   })
 
   // ? Creates a new place
-  router.post('/', async (req, res, next) => {
+  router.post('/', imageUpload.fields(placeFields), async (req, res, next) => {
     const place = req.body
+
+    //  Converts string to an array on elements
+    place.furniture = place.furniture.split(',').map(item => item.trim())
+
+    // ?  <Logic to get AWS S3 images urls>
+    // TODO: Try to modularize into it's own middleware
+    const [singleImage, multiImages] = placeFields
+    const { files } = req
+
+    place.mainImage = files[singleImage.name][0].location
+    place.images = files[multiImages.name].map(image => image.location)
+    // ? </Logic to get AWS S3 images urls>
+
     try {
       const createdPlaceId = await placesService.createPlace(place)
       res.status(201).json({

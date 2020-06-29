@@ -2,11 +2,26 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
+// TODO: Add reference to Profile Schema
 const placeSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
   location: {
     type: String,
     required: true
   },
+  mainImage: {
+    type: String,
+    required: true
+  },
+  images: [
+    {
+      type: String,
+      required: true
+    }
+  ],
   price: {
     type: Number,
     required: true
@@ -19,7 +34,15 @@ const placeSchema = new Schema({
     {
       type: String
     }
-  ]
+  ],
+  size: {
+    type: Number,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  }
 })
 
 const schema = mongoose.model('Place', placeSchema)

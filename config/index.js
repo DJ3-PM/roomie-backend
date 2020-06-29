@@ -6,8 +6,9 @@ const config = {
   dbPassword: process.env.DB_PASSWORD,
   dbUser: process.env.DB_USER,
   dbHost: process.env.DB_HOST,
-  dbName: process.env.DB_NAME
+  dbName: process.env.DB_NAME,
+  awsAccessKey: process.env.AWS_ACCESS_KEY,
+  awsSecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 }
 
-// ? quick fix while we decide a convention on how to use config file
 module.exports = config
