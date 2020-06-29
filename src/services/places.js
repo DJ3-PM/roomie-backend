@@ -21,7 +21,7 @@ const getPlaces = () => {
 }
 
 const getOnePlace = ({ placeId }) => {
-  const place = PlaceModel.findById(placeId)
+  const place = PlaceModel.findById(placeId).populate('profileId')
   return place
 }
 
