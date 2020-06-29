@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const UserSchema = require('../utils/schemas/users')
 
 const createUser = async ({ user }) => {
+  // TODO: Validate unique username (email)
   const { username, password } = user
 
   const hashedPassword = await bcrypt.hash(password, 10)

@@ -21,8 +21,8 @@ const favoritesRoutes = app => {
     }
   })
 
-  // TODO: Get User Favorites
-  router.get('/:userId', (req, res, next) => {
+  // TODO: Get Profile Favorites
+  router.get('/:profileId', (req, res, next) => {
 
   })
 
