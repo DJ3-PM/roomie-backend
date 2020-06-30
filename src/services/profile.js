@@ -6,7 +6,8 @@ const createProfile = ({ profile }) => {
   return new Promise((resolve, reject) => {
     myProfile.save((error, createdProfile) => {
       if (error) {
-        reject(error)
+        // TODO: Better Handle Error:
+        throw new Error(error)
       }
 
       resolve(createdProfile.id)
@@ -14,6 +15,11 @@ const createProfile = ({ profile }) => {
   })
 }
 
+const addPlace = ({ profileId, placeId }) => {
+  return ProfileSchema.findOneAndUpdate({ _id: profileId }, { $push: { places: placeId } })
+}
+
 module.exports = {
-  createProfile
+  createProfile,
+  addPlace
 }

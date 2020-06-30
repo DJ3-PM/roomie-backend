@@ -42,6 +42,11 @@ const placeSchema = new Schema({
   description: {
     type: String,
     required: true
+  },
+  profileId: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: 'Profile'
   }
 })
 

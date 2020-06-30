@@ -12,6 +12,7 @@ describe('Routes -> Places', () => {
 
   const request = testServer(route)
 
+  // ? GET all places tests
   describe('GET /api/places', () => {
     it('Should respond with Status 200', done => {
       request.get('/api/places').expect(200, done)
@@ -39,6 +40,7 @@ describe('Routes -> Places', () => {
     })
   })
 
+  // ? GET one place
   describe('GET /api/places/:placeId', () => {
     it('Should respond with Status 200', done => {
       request.get(`/api/places/${testId}`).expect(200, done)
@@ -65,4 +67,37 @@ describe('Routes -> Places', () => {
       })
     })
   })
+
+  // ? DELETE a place
+  describe('DELETE /api/places/:placeId', () => {
+    it('Should respond with Status 200', done => {
+      request.delete(`/api/places/${testId}`).expect(200, done)
+    })
+
+    it('Should respond with Content-type = application/json', done => {
+      request.delete(`/api/places/${testId}`).expect('Content-type', /json/, done)
+    })
+
+    it('Should NOT respond with error', done => {
+      request.delete(`/api/places/${testId}`).end((error, res) => {
+        assert.strict.deepEqual(error, null)
+        done()
+      })
+    })
+
+    it('Should respond with deletedCount', done => {
+      const expectedBody = {
+        data: {
+          deletedCount: 1
+        },
+        message: 'Place deleted'
+      }
+      request.delete(`/api/places/${testId}`).end((_error, res) => {
+        assert.strict.deepEqual(res.body, expectedBody)
+        done()
+      })
+    })
+  })
+
+  // TODO: POST Tests
 })

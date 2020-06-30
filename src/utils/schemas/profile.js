@@ -35,7 +35,13 @@ const ProfileSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
+  places: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Place'
+    }
+  ]
 })
 
 const schema = mongoose.model('Profile', ProfileSchema)
