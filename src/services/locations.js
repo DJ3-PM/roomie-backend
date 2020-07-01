@@ -4,6 +4,11 @@ const getLocations = () => {
   //
 }
 
+const getOneLocation = ({ locationId }) => {
+
+}
+
 module.exports = {
-  getLocations
+  getLocations,
+  getOneLocation
 }
