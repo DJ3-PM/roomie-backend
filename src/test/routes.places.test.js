@@ -99,5 +99,96 @@ describe('Routes -> Places', () => {
     })
   })
 
-  // TODO: POST Tests
+  // ? Create a Place
+  describe.only('POST /api/places', () => {
+    it('Should NOT respond with error', done => {
+      request.post('/api/places')
+        .field('name', 'Great Apartment')
+        .field('location', 'Suroriental, Envigado')
+        .field('price', '300')
+        .field('furniture', 'chairs, tv, sofa')
+        .field('size', '50')
+        .field('description', 'Great view')
+        .field('profileId', '5efa462bf95c031333fa746e')
+        .attach('mainImage', './src/test/fixtures/test-1.png')
+        .attach('images', './src/test/fixtures/test-2.png')
+        .attach('images', './src/test/fixtures/test-3.png')
+        .end((error, res) => {
+          assert.strict.deepEqual(error, null)
+          done()
+        })
+    })
+
+    it('Should respond with Status 201', done => {
+      request.post('/api/places')
+        .field('name', 'Great Apartment')
+        .field('location', 'Suroriental, Envigado')
+        .field('price', '300')
+        .field('furniture', 'chairs, tv, sofa')
+        .field('size', '50')
+        .field('description', 'Great view')
+        .field('profileId', '5efa462bf95c031333fa746e')
+        .attach('mainImage', './src/test/fixtures/test-1.png')
+        .attach('images', './src/test/fixtures/test-2.png')
+        .attach('images', './src/test/fixtures/test-3.png')
+        .expect(201, done)
+    })
+
+    it('Should respond with Contet-type = application/json', done => {
+      request.post('/api/places')
+        .field('name', 'Great Apartment')
+        .field('location', 'Suroriental, Envigado')
+        .field('price', '300')
+        .field('furniture', 'chairs, tv, sofa')
+        .field('size', '50')
+        .field('description', 'Great view')
+        .field('profileId', '5efa462bf95c031333fa746e')
+        .attach('mainImage', './src/test/fixtures/test-1.png')
+        .attach('images', './src/test/fixtures/test-2.png')
+        .attach('images', './src/test/fixtures/test-3.png')
+        .expect('Content-type', /json/, done)
+    })
+
+    it('Should respond with right response format', done => {
+      request.post('/api/places')
+        .field('name', 'Great Apartment')
+        .field('location', 'Suroriental, Envigado')
+        .field('price', '300')
+        .field('furniture', 'chairs, tv, sofa')
+        .field('size', '50')
+        .field('description', 'Great view')
+        .field('profileId', '5efa462bf95c031333fa746e')
+        .attach('mainImage', './src/test/fixtures/test-1.png')
+        .attach('images', './src/test/fixtures/test-2.png')
+        .attach('images', './src/test/fixtures/test-3.png')
+        .end((_error, res) => {
+          const actual = res.body
+          assert.strict.deepEqual(Object.keys(actual), ['data', 'message'])
+          done()
+        })
+    })
+
+    it.only('Should respond with created Place ID', done => {
+      request.post('/api/places')
+        .field('name', 'Great Apartment')
+        .field('location', 'Suroriental, Envigado')
+        .field('price', '300')
+        .field('furniture', 'chairs, tv, sofa')
+        .field('size', '50')
+        .field('description', 'Great view')
+        .field('profileId', '5efa462bf95c031333fa746e')
+        .attach('mainImage', './src/test/fixtures/test-1.png')
+        .attach('images', './src/test/fixtures/test-2.png')
+        .attach('images', './src/test/fixtures/test-3.png')
+        .end((_error, res) => {
+          const actual = res.body
+          const expected = {
+            data: testId,
+            message: 'Place created!'
+          }
+          assert.strict.deepEqual(actual, expected)
+          done()
+        })
+    })
+  })
 })
