@@ -14,7 +14,7 @@ const favoritesRoutes = app => {
       const createdFavoriteId = await favoritesService.createFavorite({ favorite })
       res.status(201).json({
         data: createdFavoriteId,
-        message: 'Favorite Created!'
+        message: 'Favorite created!'
       })
     } catch (error) {
       next(error)
