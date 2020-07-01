@@ -100,7 +100,7 @@ describe('Routes -> Places', () => {
   })
 
   // ? Create a Place
-  describe.only('POST /api/places', () => {
+  describe('POST /api/places', () => {
     it('Should NOT respond with error', done => {
       request.post('/api/places')
         .field('name', 'Great Apartment')
@@ -168,7 +168,7 @@ describe('Routes -> Places', () => {
         })
     })
 
-    it.only('Should respond with created Place ID', done => {
+    it('Should respond with created Place ID', done => {
       request.post('/api/places')
         .field('name', 'Great Apartment')
         .field('location', 'Suroriental, Envigado')
