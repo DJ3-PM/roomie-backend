@@ -7,6 +7,7 @@ const authRoutes = require('./routes/auth')
 const profileRoutes = require('./routes/profile')
 const favoritesRoutes = require('./routes/favorites')
 const { errorLogger, errorWrapper, errorHandler } = require('./utils/middlewares/errorMiddlewares')
+const notFoundHandler = require('./utils/middlewares/notFoundHandler')
 const app = express()
 
 // ? Stablish database connection
@@ -25,6 +26,9 @@ placesRoutes(app)
 authRoutes(app)
 profileRoutes(app)
 favoritesRoutes(app)
+
+// ? Not found handler
+app.use(notFoundHandler)
 
 // ? Error Middlewares
 app.use(errorLogger)
