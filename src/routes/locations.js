@@ -20,8 +20,9 @@ const locationsRoutes = app => {
   })
 
   // ? Lists all the neighborhood in zone
-  router.get('/:zone', async (req, res, next) => {
+  router.get('/:zona', async (req, res, next) => {
     const { zoneName } = req.params
+    console.log({ zoneName })
     try {
       const location = await locationsServices.getNeighborhoods({ zoneName })
       res.status(200).json({

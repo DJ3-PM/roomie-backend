@@ -6,7 +6,8 @@ const getZones = () => {
 }
 
 const getNeighborhoods = ({ zoneName }) => {
-
+  // const neighborhoods = LocationModel.find({ zoneName: 'barrio' })
+  // return neighborhoods
 }
 
 module.exports = {
