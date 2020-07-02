@@ -1,5 +1,8 @@
 const express = require('express')
 
+const validationHandler = require('../utils/middlewares/validationHandler')
+const { createFavoriteSchema } = require('../utils/schemas/favoriteValidation')
+
 const favoritesService = require('../services/favorites')
 
 const favoritesRoutes = app => {
@@ -7,7 +10,7 @@ const favoritesRoutes = app => {
 
   app.use('/api/favorites', router)
 
-  router.post('/', async (req, res, next) => {
+  router.post('/', validationHandler(createFavoriteSchema), async (req, res, next) => {
     const favorite = req.body
 
     try {

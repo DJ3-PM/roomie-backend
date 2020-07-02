@@ -20,13 +20,17 @@
 */
 const imageUrlStractor = ({ fields }) => {
   return (req, res, next) => {
-    const [singleImage, multiImages] = fields
-    const { files } = req
+    try {
+      const [singleImage, multiImages] = fields
+      const { files } = req
 
-    req.body.mainImage = files[singleImage.name][0].location
-    req.body.images = files[multiImages.name].map(image => image.location)
+      req.body.mainImage = files[singleImage.name][0].location
+      req.body.images = files[multiImages.name].map(image => image.location)
 
-    return next()
+      return next()
+    } catch (error) {
+      return next(error)
+    }
   }
 }
 

@@ -23,7 +23,7 @@ const errorWrapper = (error, req, res, next) => {
     next(boom.badImplementation(error))
   }
 
-  next()
+  next(error)
 }
 
 const errorHandler = (error, req, res, next) => {
