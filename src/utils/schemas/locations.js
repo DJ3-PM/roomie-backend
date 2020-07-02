@@ -3,11 +3,11 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const locationSchema = new Schema({
-  zone: {
+  zona: {
     type: String,
     required: true
   },
-  neighborhood: {
+  barrio: {
     type: String,
     required: true
   }
