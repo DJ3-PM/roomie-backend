@@ -10,6 +10,7 @@ const locationsRoutes = app => {
     try {
       const locations = await locationsServices.getLocations()
 
+      console.log(locations)
       res.status(200).json({
         data: locations,
         message: 'Zones listed'
