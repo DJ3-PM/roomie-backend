@@ -8,9 +8,8 @@ const locationsRoutes = app => {
   // ? Lists all the zones
   router.get('/', async (req, res, next) => {
     try {
-      const locations = await locationsServices.getLocations()
+      const locations = await locationsServices.getZones()
 
-      console.log(locations)
       res.status(200).json({
         data: locations,
         message: 'Zones listed'
@@ -22,12 +21,12 @@ const locationsRoutes = app => {
 
   // ? Lists all the neighborhood in zone
   router.get('/:zone', async (req, res, next) => {
-    const { locationId } = req.params
+    const { zoneName } = req.params
     try {
-      const location = await locationsServices.getOneLocation({ locationId })
+      const location = await locationsServices.getNeighborhoods({ zoneName })
       res.status(200).json({
         data: location,
-        message: 'Neighborhood listed'
+        message: 'Neighborhoods listed'
       })
     } catch (error) {
       next(error)

@@ -6,6 +6,7 @@ const placesRoutes = require('./routes/places')
 const authRoutes = require('./routes/auth')
 const profileRoutes = require('./routes/profile')
 const favoritesRoutes = require('./routes/favorites')
+const locationsRoutes = require('./routes/locations')
 const { errorLogger, errorWrapper, errorHandler } = require('./utils/middlewares/errorMiddlewares')
 const app = express()
 
@@ -25,6 +26,7 @@ placesRoutes(app)
 authRoutes(app)
 profileRoutes(app)
 favoritesRoutes(app)
+locationsRoutes(app)
 
 // ? Error Middlewares
 app.use(errorLogger)
