@@ -20,7 +20,8 @@ describe('Routes -> Profile', () => {
         .field('firstname', 'test')
         .field('lastname', 'testy')
         .field('isHost', 'false')
-        .attach('image', './src/test/fixtures/profile.png')
+        .field('userId', '5efd29cf2ff7b505ae60b415')
+        .attach('avatar', './src/test/fixtures/profile.png')
         .end((error, res) => {
           assert.strict.deepEqual(error, null)
           done()
@@ -32,7 +33,8 @@ describe('Routes -> Profile', () => {
         .field('firstname', 'test')
         .field('lastname', 'testy')
         .field('isHost', 'false')
-        .attach('image', './src/test/fixtures/profile.png')
+        .field('userId', '5efd29cf2ff7b505ae60b415')
+        .attach('avatar', './src/test/fixtures/profile.png')
         .expect(201, done)
     })
 
@@ -41,7 +43,8 @@ describe('Routes -> Profile', () => {
         .field('firstname', 'test')
         .field('lastname', 'testy')
         .field('isHost', 'false')
-        .attach('image', './src/test/fixtures/profile.png')
+        .field('userId', '5efd29cf2ff7b505ae60b415')
+        .attach('avatar', './src/test/fixtures/profile.png')
         .expect('Content-type', /json/, done)
     })
 
@@ -50,7 +53,8 @@ describe('Routes -> Profile', () => {
         .field('firstname', 'test')
         .field('lastname', 'testy')
         .field('isHost', 'false')
-        .attach('image', './src/test/fixtures/profile.png')
+        .field('userId', '5efd29cf2ff7b505ae60b415')
+        .attach('avatar', './src/test/fixtures/profile.png')
         .end((_error, res) => {
           const actual = res.body
           assert.strict.deepEqual(Object.keys(actual), ['data', 'message'])
@@ -63,7 +67,8 @@ describe('Routes -> Profile', () => {
         .field('firstname', 'test')
         .field('lastname', 'testy')
         .field('isHost', 'false')
-        .attach('image', './src/test/fixtures/profile.png')
+        .field('userId', '5efd29cf2ff7b505ae60b415')
+        .attach('avatar', './src/test/fixtures/profile.png')
         .end((_error, res) => {
           const actual = res.body
           const expected = {
