@@ -27,13 +27,23 @@ const locationsRoutes = app => {
   })
 
   // ? Lists all the neighborhood in zone
-  router.get('/:zona', async (req, res, next) => {
+  router.get('/:zoneName', async (req, res, next) => {
     const { zoneName } = req.params
-    console.log({ zoneName })
+
     try {
-      const location = await locationsServices.getNeighborhoods({ zoneName })
+      const tmp = await locationsServices.getNeighborhoods()
+      const neighborhood = []
+
+      tmp.forEach(element => {
+        let xd = element.zona
+        xd = (xd.replace(/ /g, ''))
+        if (xd === zoneName) {
+          neighborhood.push(element.barrio)
+        }
+      })
+
       res.status(200).json({
-        data: location,
+        data: neighborhood,
         message: 'Neighborhoods listed'
       })
     } catch (error) {

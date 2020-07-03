@@ -5,9 +5,9 @@ const getZones = () => {
   return locations
 }
 
-const getNeighborhoods = ({ zoneName }) => {
-  // const neighborhoods = LocationModel.find({ zoneName: 'barrio' })
-  // return neighborhoods
+const getNeighborhoods = () => {
+  const neighborhoods = LocationModel.find({})
+  return neighborhoods
 }
 
 module.exports = {
