@@ -13,7 +13,15 @@ const authRoutes = app => {
     const user = req.body
 
     try {
-      const createdUserId = await usersService.createUser({ user })
+      const { error, createdUserId } = await usersService.createUser({ user })
+
+      if (error) {
+        return res.status(400).json({
+          error,
+          message: 'Error'
+        })
+      }
+
       res.status(201).json({
         data: createdUserId,
         message: 'User created!'
