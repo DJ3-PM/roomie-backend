@@ -3,12 +3,14 @@ const joi = require('@hapi/joi')
 const idSchema = joi.string().regex(/^[0-9a-fA-F]{24}$/)
 
 const createPlaceSchema = {
+  mainImage: joi.string().required(),
   name: joi.string().required(),
   location: joi.string().required(),
   price: joi.string().required(),
   furniture: joi.string().required(),
   size: joi.string().required(),
-  description: joi.string().min(100).required(),
+  description: joi.string().required(),
+  images: joi.array().required(),
   profileId: idSchema.required()
 }
 

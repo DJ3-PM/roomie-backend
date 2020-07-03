@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+/* eslint-disable */
 const assert = require('assert')
 const proxyquire = require('proxyquire')
 
@@ -126,7 +126,7 @@ describe('Routes -> Places', () => {
         .field('price', '300')
         .field('furniture', 'chairs, tv, sofa')
         .field('size', '50')
-        .field('description', 'Great view')
+        .field('description', 'Great View')
         .field('profileId', '5efa462bf95c031333fa746e')
         .attach('mainImage', './src/test/fixtures/test-1.png')
         .attach('images', './src/test/fixtures/test-2.png')
@@ -163,7 +163,8 @@ describe('Routes -> Places', () => {
         .attach('images', './src/test/fixtures/test-3.png')
         .end((_error, res) => {
           const actual = res.body
-          assert.strict.deepEqual(Object.keys(actual), ['data', 'message'])
+          console.log("actual", actual)
+          assert.strict.deepEqual(Object.keys(actual), ["data", "message"])
           done()
         })
     })
