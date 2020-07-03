@@ -49,6 +49,13 @@ const placesRoutes = app => {
     async (req, res, next) => {
       const place = req.body
 
+      place.wifi = place.wifi && (place.wifi === 'true')
+      place.bath = place.bath && (place.bath === 'true')
+      place.parking = place.parking && (place.parking === 'true')
+      place.tv = place.tv && (place.tv === 'true')
+      place.cleaning = place.cleaning && (place.cleaning === 'true')
+      place.closet = place.closet && (place.closet === 'true')
+
       // Converts string to an array of elements
       place.furniture = place.furniture.split(',').map(item => item.trim())
 
