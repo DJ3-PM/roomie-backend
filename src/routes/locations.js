@@ -9,16 +9,16 @@ const locationsRoutes = app => {
   router.get('/', async (req, res, next) => {
     try {
       const tmp = await locationsServices.getZones()
-      const locations = []
+      const zones = []
 
       tmp.forEach(element => {
-        if (!locations.includes(element.zona)) {
-          locations.push(element.zona)
+        if (!zones.includes(element.zona) && element.zona != null) {
+          zones.push(element.zona)
         }
       })
 
       res.status(200).json({
-        data: locations,
+        data: zones,
         message: 'Zones listed'
       })
     } catch (error) {
