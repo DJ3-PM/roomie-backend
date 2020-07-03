@@ -17,7 +17,7 @@ describe('Services -> Users', () => {
   describe('When createUser is called', async () => {
     it('Should call hash() bcrypt method', async done => {
       usersService.createUser({ user: testUser })
-      assert.strict.equal(hashStub.called, true)
+      assert.strict.deepEqual(hashStub.called, true)
       done()
     })
   })

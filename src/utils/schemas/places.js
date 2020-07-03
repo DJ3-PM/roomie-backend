@@ -35,6 +35,30 @@ const placeSchema = new Schema({
       type: String
     }
   ],
+  wifi: {
+    type: Boolean,
+    default: false
+  },
+  bath: {
+    type: Boolean,
+    default: false
+  },
+  parking: {
+    type: Boolean,
+    default: false
+  },
+  tv: {
+    type: Boolean,
+    default: false
+  },
+  cleaning: {
+    type: Boolean,
+    default: false
+  },
+  closet: {
+    type: Boolean,
+    default: false
+  },
   size: {
     type: Number,
     required: true

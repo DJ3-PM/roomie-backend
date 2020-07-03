@@ -163,8 +163,7 @@ describe('Routes -> Places', () => {
         .attach('images', './src/test/fixtures/test-3.png')
         .end((_error, res) => {
           const actual = res.body
-          console.log("actual", actual)
-          assert.strict.deepEqual(Object.keys(actual), ["data", "message"])
+          assert.strict.deepEqual(Object.keys(actual), ['data', 'message'])
           done()
         })
     })
