@@ -1,7 +1,7 @@
 const LocationModel = require('../utils/schemas/locations')
 
 const getZones = () => {
-  const locations = LocationModel.find({}, 'zona')
+  const locations = LocationModel.find({})
   return locations
 }
 
