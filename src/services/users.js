@@ -4,9 +4,9 @@ const UserSchema = require('../utils/schemas/users')
 const createUser = async ({ user }) => {
   const { username, password } = user
 
-  const existingUser = await UserSchema.find({ username })
-
   const hashedPassword = await bcrypt.hash(password, 10)
+
+  const existingUser = await UserSchema.find({ username })
 
   const newUser = {
     username,
