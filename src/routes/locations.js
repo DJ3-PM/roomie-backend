@@ -32,18 +32,18 @@ const locationsRoutes = app => {
 
     try {
       const tmp = await locationsServices.getNeighborhoods()
-      const neighborhood = []
+      const neighborhoods = []
 
       tmp.forEach(element => {
         let xd = element.zona
         xd = (xd.replace(/ /g, ''))
         if (xd === zoneName) {
-          neighborhood.push(element.barrio)
+          neighborhoods.push(element.barrio)
         }
       })
 
       res.status(200).json({
-        data: neighborhood,
+        data: neighborhoods,
         message: 'Neighborhoods listed'
       })
     } catch (error) {
