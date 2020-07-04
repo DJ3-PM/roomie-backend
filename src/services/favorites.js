@@ -14,6 +14,12 @@ const createFavorite = ({ favorite }) => {
   })
 }
 
+const getFavorites = ({ profileId }) => {
+  const favoritesUser = FavoriteSchema.find({ profileId: profileId })
+  return favoritesUser
+}
+
 module.exports = {
-  createFavorite
+  createFavorite,
+  getFavorites
 }
