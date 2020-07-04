@@ -19,7 +19,13 @@ const getFavorites = ({ profileId }) => {
   return favoritesUser
 }
 
+const deleteFavorite = ({ favoriteId }) => {
+  const deleteFavorite = FavoriteSchema.deleteOne({ _id: favoriteId })
+  return deleteFavorite
+}
+
 module.exports = {
   createFavorite,
-  getFavorites
+  getFavorites,
+  deleteFavorite
 }
