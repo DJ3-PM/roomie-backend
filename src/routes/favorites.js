@@ -39,13 +39,13 @@ const favoritesRoutes = app => {
   })
 
   // TODO: Delete a User Favorite
-  router.delete('/:favoriteId', (req, res, next) => {
+  router.delete('/:favoriteId', async (req, res, next) => {
     const { favoriteId } = req.params
     try {
-      const del = await favoritesService.deleteFavorite({ favoriteId })
+      const { deletedFavorite } = await favoritesService.deleteFavorite({ favoriteId })
       res.status(200).json({
         data: {
-          del
+          deletedFavorite
         },
         message: 'Favorite deleted'
       })
