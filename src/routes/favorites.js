@@ -44,9 +44,11 @@ const favoritesRoutes = app => {
     try {
       const del = await favoritesService.deleteFavorite({ favoriteId })
       res.status(200).json({
-        del
-      }),
+        data: {
+          del
+        },
         message: 'Favorite deleted'
+      })
     } catch (error) {
       next(error)
     }
