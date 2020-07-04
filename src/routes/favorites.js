@@ -24,7 +24,7 @@ const favoritesRoutes = app => {
     }
   })
 
-  // TODO: Get Profile Favorites
+  // Get Profile Favorites
   router.get('/:profileId', async (req, res, next) => {
     const { profileId } = req.params
     try {
@@ -40,7 +40,16 @@ const favoritesRoutes = app => {
 
   // TODO: Delete a User Favorite
   router.delete('/:favoriteId', (req, res, next) => {
-
+    const { favoriteId } = req.params
+    try {
+      const del = await favoritesService.deleteFavorite({ favoriteId })
+      res.status(200).json({
+        del
+      }),
+        message: 'Favorite deleted'
+    } catch (error) {
+      next(error)
+    }
   })
 }
 
