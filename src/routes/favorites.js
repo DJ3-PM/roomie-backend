@@ -38,7 +38,7 @@ const favoritesRoutes = app => {
     }
   })
 
-  // TODO: Delete a User Favorite
+  // Delete a User Favorite
   router.delete('/:favoriteId', async (req, res, next) => {
     const { favoriteId } = req.params
     try {
