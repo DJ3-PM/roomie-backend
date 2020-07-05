@@ -1,4 +1,5 @@
 const express = require('express')
+const passport = require('passport')
 
 const usersService = require('../services/users')
 const validationHandler = require('../utils/middlewares/validationHandler')
@@ -33,7 +34,26 @@ const authRoutes = app => {
 
   // TODO: User Signin
   router.post('/sign-in', async (req, res, next) => {
+    const user = req.body
 
-  }
+    try {
+      const { error, signInUser } = await usersService.signInUser({ user })
+
+      if (error) {
+        return res.status(404).json({
+          error,
+          message: 'User cannot find'
+        })
+      }
+
+      res.status(200).json({
+        data: signInUser,
+        message: 'User found'
+      })
+    } catch (error) {
+      next(error)
+    }
+  })
+}
 
 module.exports = authRoutes
