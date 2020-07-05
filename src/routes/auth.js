@@ -32,9 +32,8 @@ const authRoutes = app => {
   })
 
   // TODO: User Signin
-  router.post('/sign-in', (req, res, next) => {
+  router.post('/sign-in', async (req, res, next) => {
 
-  })
-}
+  }
 
 module.exports = authRoutes

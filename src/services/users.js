@@ -35,6 +35,13 @@ const createUser = async ({ user }) => {
   })
 }
 
+const signInUser = async ({ user }) => {
+  const { username, password } = user
+
+  const noExistingUser = await UserSchema.find({ username })
+}
+
 module.exports = {
-  createUser
+  createUser,
+  signInUser
 }
