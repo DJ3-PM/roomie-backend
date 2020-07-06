@@ -38,7 +38,17 @@ const createUser = async ({ user }) => {
 const signInUser = async ({ user }) => {
   const { username, password } = user
 
-  const noExistingUser = await UserSchema.find({ username })
+  const userFound = await UserSchema.findOne({ username: username })
+  const match = await bcrypt.compare(password, userFound.password)
+
+  if (!userFound) {
+    const userNotFound = {}
+    return userNotFound
+  }
+  if (!match) {
+    return false
+  }
+  return userFound
 }
 
 module.exports = {

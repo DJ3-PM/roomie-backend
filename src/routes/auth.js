@@ -37,12 +37,20 @@ const authRoutes = app => {
     const user = req.body
 
     try {
-      const { error, signInUser } = await usersService.signInUser({ user })
+      const signInUser = await usersService.signInUser({ user })
+      console.log(signInUser)
 
-      if (error) {
+      if (!signInUser) {
         return res.status(404).json({
-          error,
-          message: 'User cannot find'
+          data: [],
+          message: 'Not user found'
+        })
+      }
+
+      if (signInUser === {}) {
+        return res.status(404).json({
+          data: [],
+          message: 'Incorrect password'
         })
       }
 
