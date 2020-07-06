@@ -39,16 +39,17 @@ const signInUser = async ({ user }) => {
   const { username, password } = user
 
   const userFound = await UserSchema.findOne({ username: username })
-  const match = await bcrypt.compare(password, userFound.password)
 
   if (!userFound) {
-    const userNotFound = {}
-    return userNotFound
+    return null
   }
-  if (!match) {
-    return false
+  const match = await bcrypt.compare(password, userFound.password)
+  if (userFound && !match) {
+    return null
+  } else {
+    // const xd = userFound.collection.findOne({ isHost: true })
+    return userFound
   }
-  return userFound
 }
 
 module.exports = {
