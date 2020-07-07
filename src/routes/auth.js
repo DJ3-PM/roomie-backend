@@ -1,5 +1,4 @@
 const express = require('express')
-const passport = require('passport')
 
 const usersService = require('../services/users')
 const validationHandler = require('../utils/middlewares/validationHandler')
