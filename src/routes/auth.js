@@ -1,4 +1,5 @@
 const express = require('express')
+const passport = require('passport')
 
 const usersService = require('../services/users')
 const validationHandler = require('../utils/middlewares/validationHandler')
@@ -34,7 +35,6 @@ const authRoutes = app => {
   // TODO: User Signin
   router.post('/sign-in', async (req, res, next) => {
     const user = req.body
-
     try {
       const signInUser = await usersService.signInUser({ user })
 
