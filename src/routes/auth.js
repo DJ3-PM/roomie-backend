@@ -34,7 +34,6 @@ const authRoutes = app => {
 
   // TODO: User Signin
   router.post('/sign-in', async (req, res, next) => {
-
     passport.authenticate('local-signin', function (error, user) {
       try {
         if (error || !user) {
@@ -44,24 +43,8 @@ const authRoutes = app => {
           })
         }
 
-        const {
-          _id: id,
-          isHost,
-          firstname,
-          lastname,
-          profileId,
-          avatar
-        } = user
-
         res.status(200).json({
-          user: {
-            _id: id,
-            isHost,
-            firstname,
-            lastname,
-            profileId,
-            avatar
-          },
+          data: user,
           message: 'User found!'
         })
       } catch (error) {
