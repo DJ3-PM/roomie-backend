@@ -1,5 +1,6 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
+const bcrypt = require('bcrypt')
 
 const User = require('../utils/schemas/users')
 
@@ -13,15 +14,16 @@ passport.deserializeUser(async (id, done) => {
 })
 
 passport.use('local-signin', new LocalStrategy({
-  usernameField: 'email',
+  usernameField: 'username',
   passwordField: 'password',
   passReqToCallback: true
-}, async (req, email, password, done) => {
-  const user = await User.findOne({ email: email })
+}, async (req, username, password, done) => {
+  const user = await User.findOne({ username: username })
+  console.log(user)
   if (!user) {
     return done(null, false)
   }
-  if (!user.comparePassword(password)) {
+  if (!(await bcrypt.compare(password, user.password))) {
     return done(null, false)
   }
   return done(null, user)

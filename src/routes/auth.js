@@ -43,7 +43,7 @@ const authRoutes = app => {
           })
         }
 
-        res.status(200).json({
+        return res.status(200).json({
           data: user,
           message: 'User found!'
         })

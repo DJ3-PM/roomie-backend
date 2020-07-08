@@ -17,6 +17,8 @@ const session = require('express-session')
 // ? Stablish database connection
 db.connect()
 
+require('./routes/passport')
+
 // ? Middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
