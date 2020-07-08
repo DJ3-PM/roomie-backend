@@ -45,9 +45,8 @@ const authRoutes = app => {
         })
       }
 
-      res.status(200).json({
-        data: signInUser,
-        message: 'User found'
+      res.status(200).cookie('access_token', 'Bearer ' + signInUser, {
+        expires: new Date(Date.now() + 8 * 3600000) // cookie will be removed after 8 hours
       })
     } catch (error) {
       next(error)
