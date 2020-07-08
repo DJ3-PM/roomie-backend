@@ -50,7 +50,7 @@ const authRoutes = app => {
           firstname,
           lastname,
           profileId,
-          avatar,
+          avatar
         } = user
 
         res.status(200).json({

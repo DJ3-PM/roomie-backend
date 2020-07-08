@@ -1,5 +1,6 @@
 const express = require('express')
 
+const passport = require('passport')
 const { port } = require('../config')
 const db = require('./db')
 const placesRoutes = require('./routes/places')
@@ -27,6 +28,9 @@ app.use(
     secret: 'xd'
   })
 )
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.get('/', (req, res, next) => {
   res.send(':D')
