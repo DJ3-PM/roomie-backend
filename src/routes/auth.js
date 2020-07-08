@@ -33,25 +33,11 @@ const authRoutes = app => {
   })
 
   // TODO: User Signin
-  router.post('/sign-in', async (req, res, next) => {
-    passport.authenticate('local-signin', function (error, user) {
-      try {
-        if (error || !user) {
-          return res.status(403).json({
-            data: [],
-            message: 'Not user found or Incorrect Password'
-          })
-        }
-
-        return res.status(200).json({
-          data: user,
-          message: 'User found!'
-        })
-      } catch (error) {
-        next(error)
-      }
-    })
-  })
+  router.post('/sign-in', passport.authenticate('local-signin', {
+    successRedirect: '/',
+    failureRedirect: '/sign-in',
+    failureFlash: true
+  }))
 }
 
 module.exports = authRoutes
