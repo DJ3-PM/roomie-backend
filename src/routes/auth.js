@@ -45,8 +45,8 @@ const authRoutes = app => {
         })
       }
 
-      req.session.count = signInUser
-      res.status(200).json({ user: req.session.count })
+      req.session.user = signInUser
+      res.status(200).json({ user: req.session.user })
     } catch (error) {
       next(error)
     }
