@@ -34,22 +34,40 @@ const authRoutes = app => {
 
   // TODO: User Signin
   router.post('/sign-in', async (req, res, next) => {
-    const user = req.body
-    try {
-      const signInUser = await usersService.signInUser({ user })
 
-      if (!signInUser) {
-        return res.status(404).json({
-          data: [],
-          message: 'Not user found or Incorrect Password'
+    passport.authenticate('local-signin', function (error, user) {
+      try {
+        if (error || !user) {
+          return res.status(403).json({
+            data: [],
+            message: 'Not user found or Incorrect Password'
+          })
+        }
+
+        const {
+          _id: id,
+          isHost,
+          firstname,
+          lastname,
+          profileId,
+          avatar,
+        } = user
+
+        res.status(200).json({
+          user: {
+            _id: id,
+            isHost,
+            firstname,
+            lastname,
+            profileId,
+            avatar
+          },
+          message: 'User found!'
         })
+      } catch (error) {
+        next(error)
       }
-
-      req.session.user = signInUser
-      res.status(200).json({ user: req.session.user })
-    } catch (error) {
-      next(error)
-    }
+    })
   })
 }
 
