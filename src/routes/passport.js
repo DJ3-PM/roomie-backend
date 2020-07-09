@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt')
 
 // const UsersService = require('../utils/schemas/users')
 const UsersService = require('../services/users')
-console.log(UsersService)
 
 passport.serializeUser((user, done) => {
   done(null, user.id)
@@ -37,12 +36,9 @@ passport.use(
     console.log('here is passport')
     try {
       const user = await UsersService.signInUser({ username, password })
-      console.log(user)
+      console.log('passportUser', user)
 
       if (!user) {
-        return cb(null, false)
-      }
-      if (!(await bcrypt.compare(password, user.password))) {
         return cb(null, false)
       }
       return cb(null, user)

@@ -51,11 +51,16 @@ const signInUser = async ({ username, password }) => {
   }
 
   const tmp = userFound.id
-  const isHost = await serviceProfile.profileIsHost({ tmp })
-  if (isHost) {
-    return isHost
+  const profile = await serviceProfile.profileIsHost({ tmp })
+  if (profile) {
+    return {
+      profile,
+      userId: tmp
+    }
   } else {
-    return userFound
+    return {
+      userId: tmp
+    }
   }
 }
 
