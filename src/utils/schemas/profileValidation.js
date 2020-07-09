@@ -7,7 +7,7 @@ const createProfileSchema = {
   firstname: joi.string().required(),
   lastname: joi.string().required(),
   isHost: joi.string().required(),
-  publicEmail: joi.string().email(),
+  contactEmail: joi.string().email(),
   whatsapp: joi.string(),
   about: joi.string(),
   userId: idSchema.required()
