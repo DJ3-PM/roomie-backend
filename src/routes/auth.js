@@ -5,6 +5,8 @@ const usersService = require('../services/users')
 const validationHandler = require('../utils/middlewares/validationHandler')
 const { createUserSchema } = require('../utils/schemas/usersValidation')
 
+require('./passport')
+
 const authRoutes = app => {
   const router = express.Router()
   app.use('/api/auth', router)
@@ -33,11 +35,26 @@ const authRoutes = app => {
   })
 
   // TODO: User Signin
-  router.post('/sign-in', passport.authenticate('local-signin', {
-    successRedirect: '/',
-    failureRedirect: '/sign-in',
-    failureFlash: true
-  }))
+  router.post('/sign-in', async (req, res, next) => {
+    passport.authenticate('basic', function (error, user) {
+      console.log(user + 'xd')
+      try {
+        if (error || !user) {
+          return res.status(403).json({
+            data: [],
+            message: 'Not user found or Incorrect Password'
+          })
+        }
+
+        return res.status(200).json({
+          data: user,
+          message: 'User found!'
+        })
+      } catch (error) {
+        next(error)
+      }
+    })(req, res, next)
+  })
 }
 
 module.exports = authRoutes

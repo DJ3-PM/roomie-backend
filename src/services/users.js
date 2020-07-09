@@ -37,6 +37,7 @@ const createUser = async ({ user }) => {
 }
 
 const signInUser = async ({ user }) => {
+  console.log('here is method signin')
   const { username, password } = user
 
   const userFound = await UserSchema.findOne({ username: username })
