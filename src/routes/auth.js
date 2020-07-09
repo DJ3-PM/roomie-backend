@@ -12,7 +12,7 @@ const authRoutes = app => {
   const router = express.Router()
   app.use('/api/auth', router)
 
-  // ? Creates a new user
+  // Creates a new user
   router.post('/sign-up', validationHandler(createUserSchema), async (req, res, next) => {
     const user = req.body
 
@@ -35,7 +35,7 @@ const authRoutes = app => {
     }
   })
 
-  // TODO: User Signin
+  // User Signin
   router.post('/sign-in', async (req, res, next) => {
     passport.authenticate('basic', function (error, user) {
       console.log(user + 'xd')
