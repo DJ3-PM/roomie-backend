@@ -5,6 +5,7 @@ const usersService = require('../services/users')
 const validationHandler = require('../utils/middlewares/validationHandler')
 const { createUserSchema } = require('../utils/schemas/usersValidation')
 
+// require('../utils/auth/strategies/basic')
 require('./passport')
 
 const authRoutes = app => {

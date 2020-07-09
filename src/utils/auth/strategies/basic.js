@@ -4,8 +4,7 @@ const { BasicStrategy } = require('passport-http')
 const bcrypt = require('bcrypt')
 
 // const UsersService = require('../utils/schemas/users')
-const UsersService = require('../services/users')
-console.log(UsersService)
+const UsersService = require('../../../services/users')
 
 passport.serializeUser((user, done) => {
   done(null, user.id)
@@ -34,9 +33,12 @@ passport.deserializeUser(async (id, done) => {
 
 passport.use(
   new BasicStrategy(async (username, password, cb) => {
+    const userToFind = { username, password }
+    console.log(userToFind)
+    const userService = new UsersService()
     console.log('here is passport')
     try {
-      const user = await UsersService.signInUser({ username })
+      const user = await userService.signInUser({ userToFind })
       console.log(user)
 
       if (!user) {
