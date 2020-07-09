@@ -1,9 +1,6 @@
 const passport = require('passport')
-// const LocalStrategy = require('passport-local').Strategy
 const { BasicStrategy } = require('passport-http')
-const bcrypt = require('bcrypt')
 
-// const UsersService = require('../utils/schemas/users')
 const UsersService = require('../services/users')
 
 passport.serializeUser((user, done) => {
