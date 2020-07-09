@@ -36,7 +36,7 @@ passport.use(
   new BasicStrategy(async (username, password, cb) => {
     console.log('here is passport')
     try {
-      const user = await UsersService.signInUser({ username })
+      const user = await UsersService.signInUser({ username, password })
       console.log(user)
 
       if (!user) {

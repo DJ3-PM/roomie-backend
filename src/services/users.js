@@ -36,11 +36,11 @@ const createUser = async ({ user }) => {
   })
 }
 
-const signInUser = async ({ user }) => {
+const signInUser = async ({ username, password }) => {
   console.log('here is method signin')
-  const { username, password } = user
 
   const userFound = await UserSchema.findOne({ username: username })
+  console.log('userFound', userFound)
   if (!userFound) {
     return null
   }
