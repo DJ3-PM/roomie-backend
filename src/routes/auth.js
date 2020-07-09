@@ -37,7 +37,6 @@ const authRoutes = app => {
   // User Signin
   router.post('/sign-in', async (req, res, next) => {
     passport.authenticate('basic', function (error, user) {
-      console.log(user + 'xd')
       try {
         if (error || !user) {
           return res.status(403).json({
