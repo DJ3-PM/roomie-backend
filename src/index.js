@@ -1,5 +1,6 @@
 const express = require('express')
 
+const passport = require('passport')
 const { port } = require('../config')
 const db = require('./db')
 const placesRoutes = require('./routes/places')
@@ -11,13 +12,27 @@ const { errorLogger, errorWrapper, errorHandler } = require('./utils/middlewares
 const notFoundHandler = require('./utils/middlewares/notFoundHandler')
 const app = express()
 
+const session = require('express-session')
+
 // ? Stablish database connection
 db.connect()
+
+require('./routes/passport')
 
 // ? Middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+app.use(
+  session({
+    resave: false,
+    saveUninitialized: false,
+    secret: 'xd'
+  })
+)
+
+app.use(passport.initialize())
+app.use(passport.session())
 // ! REMOVE LATER WHEN READY FOR PRODUCTION
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')

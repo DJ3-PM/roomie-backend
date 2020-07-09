@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt')
 const UserSchema = require('../utils/schemas/users')
+const serviceProfile = require('../services/profile')
 
 const createUser = async ({ user }) => {
   const { username, password } = user
@@ -35,6 +36,35 @@ const createUser = async ({ user }) => {
   })
 }
 
+const signInUser = async ({ username, password }) => {
+  console.log('here is method signin')
+
+  const userFound = await UserSchema.findOne({ username: username })
+  console.log('userFound', userFound)
+  if (!userFound) {
+    return null
+  }
+
+  const match = await bcrypt.compare(password, userFound.password)
+  if (userFound && !match) {
+    return null
+  }
+
+  const tmp = userFound.id
+  const profile = await serviceProfile.profileIsHost({ tmp })
+  if (profile) {
+    return {
+      profile,
+      userId: tmp
+    }
+  } else {
+    return {
+      userId: tmp
+    }
+  }
+}
+
 module.exports = {
-  createUser
+  createUser,
+  signInUser
 }

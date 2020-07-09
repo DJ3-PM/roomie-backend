@@ -19,7 +19,17 @@ const addPlace = ({ profileId, placeId }) => {
   return ProfileSchema.findOneAndUpdate({ _id: profileId }, { $push: { places: placeId } })
 }
 
+const profileIsHost = async ({ tmp }) => {
+  const xd = await ProfileSchema.findOne({ userId: tmp })
+  if (xd) {
+    return xd
+  } else {
+    return null
+  }
+}
+
 module.exports = {
   createProfile,
-  addPlace
+  addPlace,
+  profileIsHost
 }
