@@ -12,22 +12,6 @@ passport.deserializeUser(async (id, done) => {
   done(null, user)
 })
 
-// passport.use(new BasicStrategy({
-//   usernameField: 'username',
-//   passwordField: 'password',
-//   passReqToCallback: true
-// }, async (req, username, password, done) => {
-//   const user = await User.findOne({ username: username })
-//   console.log(user)
-//   if (!user) {
-//     return done(null, false)
-//   }
-//   if (!(await bcrypt.compare(password, user.password))) {
-//     return done(null, false)
-//   }
-//   return done(null, user)
-// }))
-
 passport.use(
   new BasicStrategy(async (username, password, cb) => {
     console.log('here is passport')
