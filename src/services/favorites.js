@@ -12,8 +12,8 @@ const createFavorite = async ({ favorite }) => {
 }
 
 const getFavorites = ({ profileId }) => {
-  const favoritesUser = FavoriteSchema.find({ profileId: profileId })
-  return favoritesUser
+  const profileFavorites = ProfileService.getFavorites({ profileId })
+  return profileFavorites
 }
 
 const deleteFavorite = ({ favoriteId }) => {
