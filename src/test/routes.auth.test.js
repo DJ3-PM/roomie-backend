@@ -77,22 +77,16 @@ describe('Routes -> Auth', () => {
       request
         .post('/api/auth/sign-in')
         .send(testPayload)
-        .set('Accept', 'application/json')
-        .expect(200, done)
+        .expect('Content-type', /json/, done)
     })
 
-    // it('Should respond with right status 200', done => {
-    //   request.post('/api/auth/sign-in')
-    //     .send(testPayload)
-    //     .end((_error, res) => {
-    //       const actual = res.body
-    //       const expected = {
-    //         data: usersResultMock,
-    //         message: 'User found!'
-    //       }
-    //       assert.strict.deepEqual(actual, expected)
-    //       done()
-    //     })
-    // })
+    it('Should Not respond with error', done => {
+      request.post('/api/auth/sign-in')
+        .send(testPayload)
+        .end((error, res) => {
+          assert.strict.deepEqual(error, null)
+          done()
+        })
+    })
   })
 })
