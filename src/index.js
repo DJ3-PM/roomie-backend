@@ -1,6 +1,7 @@
 const express = require('express')
-
 const passport = require('passport')
+const cors = require('cors')
+
 const { port } = require('../config')
 const db = require('./db')
 const placesRoutes = require('./routes/places')
@@ -33,14 +34,8 @@ app.use(
 
 app.use(passport.initialize())
 app.use(passport.session())
-// ! REMOVE LATER WHEN READY FOR PRODUCTION
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Credentials', true)
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-  res.header('Access-Control-Allow-Headers', 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json')
-  next()
-})
+
+app.use(cors())
 
 app.get('/', (req, res, next) => {
   res.send(':D')
