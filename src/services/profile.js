@@ -19,6 +19,14 @@ const addPlace = ({ profileId, placeId }) => {
   return ProfileSchema.findOneAndUpdate({ _id: profileId }, { $push: { places: placeId } })
 }
 
+const addFavorite = ({ profileId, placeId }) => {
+  return ProfileSchema.findOneAndUpdate({ _id: profileId }, { $push: { favorites: placeId } })
+}
+
+const getFavorites = ({ profileId }) => {
+  return ProfileSchema.findById(profileId).populate('favorites')
+}
+
 const profileIsHost = async ({ tmp }) => {
   const xd = await ProfileSchema.findOne({ userId: tmp })
   if (xd) {
@@ -31,5 +39,7 @@ const profileIsHost = async ({ tmp }) => {
 module.exports = {
   createProfile,
   addPlace,
+  addFavorite,
+  getFavorites,
   profileIsHost
 }
