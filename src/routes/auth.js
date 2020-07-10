@@ -39,7 +39,7 @@ const authRoutes = app => {
     passport.authenticate('basic', function (error, user) {
       try {
         if (error || !user) {
-          return res.status(403).json({
+          return res.status(401).json({
             data: [],
             message: 'Not user found or Incorrect Password'
           })
