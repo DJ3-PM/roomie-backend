@@ -25,11 +25,12 @@ const favoritesRoutes = app => {
   })
 
   // Get Profile Favorites
-  router.get('/:profileId', async (req, res, next) => {
-    const { profileId } = req.params
+  router.get('/', async (req, res, next) => {
+    const { profileId } = req.body
 
     try {
-      const favorites = await favoritesService.getFavorites({ profileId })
+      const { favorites } = await favoritesService.getFavorites({ profileId })
+
       res.status(200).json({
         data: favorites,
         message: 'Favorites listed'

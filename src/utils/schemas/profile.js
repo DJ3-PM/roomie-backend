@@ -41,6 +41,12 @@ const ProfileSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Place'
     }
+  ],
+  favorites: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Place'
+    }
   ]
 })
 

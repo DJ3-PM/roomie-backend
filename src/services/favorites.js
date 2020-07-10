@@ -1,22 +1,19 @@
 const FavoriteSchema = require('../utils/schemas/favorite')
+const ProfileService = require('./profile')
 
-const createFavorite = ({ favorite }) => {
-  const myFavorite = new FavoriteSchema(favorite)
+const createFavorite = async ({ favorite }) => {
+  const { placeId, profileId } = favorite
 
-  return new Promise((resolve, reject) => {
-    myFavorite.save((error, createdFavorite) => {
-      if (error) {
-        reject(error)
-      }
-
-      resolve(createdFavorite.id)
-    })
-  })
+  try {
+    await ProfileService.addFavorite({ profileId, placeId })
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const getFavorites = ({ profileId }) => {
-  const favoritesUser = FavoriteSchema.find({ profileId: profileId })
-  return favoritesUser
+  const profileFavorites = ProfileService.getFavorites({ profileId })
+  return profileFavorites
 }
 
 const deleteFavorite = ({ favoriteId }) => {
