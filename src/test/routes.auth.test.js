@@ -4,6 +4,7 @@ const assert = require('assert')
 
 const { usersResultMock, usersServiceMock } = require('../utils/mocks/users')
 const testServer = require('../utils/testServer')
+const { test } = require('mocha')
 
 const testPayload = {
   username: 'example@example.com',
@@ -73,16 +74,39 @@ describe('Routes -> Auth', () => {
         .expect(200, done)
     })
 
-    it('Should respond with content-type = application/json', done => {
+    it('Should respond with 404 Not user found or Incorrect Password', done => {
       request.post('/api/auth/sign-in')
         .send(testPayload)
-        .expect('content-type', /json/, done)
+        .expect(401, done)
     })
 
     it('Should not respond with content-type = application/json', done => {
       request.post('/api/auth/sign-in')
         .send(testPayload)
         .expect('content-type', /json/, done)
+    })
+
+    it('Should Not respond with error', done => {
+      request.post('/api/auth/sign-in')
+        .send(testPayload)
+        .end((error, res) => {
+          assert.strict.deepEqual(error, null)
+          done()
+        })
+    })
+
+    it('Should respond with right response format', done => {
+      request.post('/api/auth/sign-in')
+        .send(testPayload)
+        .end((_error, res) => {
+          const actual = res.body
+          const expected = {
+            data: user,
+            message: 'User found!'
+          }
+          assert.strict.deepEqual(actual, expected)
+          done()
+        })
     })
   })
 })
