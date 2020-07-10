@@ -4,7 +4,6 @@ const assert = require('assert')
 
 const { usersResultMock, usersServiceMock } = require('../utils/mocks/users')
 const testServer = require('../utils/testServer')
-const { test } = require('mocha')
 
 const testPayload = {
   username: 'example@example.com',
@@ -41,7 +40,7 @@ describe('Routes -> Auth', () => {
         })
     })
 
-    it('Should respond with right response format', done => {
+    it('Should respond with right status 200', done => {
       request.post('/api/auth/sign-up')
         .send(testPayload)
         .end((_error, res) => {
@@ -68,45 +67,32 @@ describe('Routes -> Auth', () => {
 
   // ? sign-in new user
   describe('POST api/auth', () => {
-    it('should respond with status 200', done => {
+    it('Should respond with 401 Not user found or Incorrect Password', done => {
       request.post('/api/auth/sign-in')
-        .send(testPayload)
-        .expect(200, done)
-    })
-
-    it('Should respond with 404 Not user found or Incorrect Password', done => {
-      request.post('/api/auth/sign-in')
-        .send(testPayload)
+        .send('')
         .expect(401, done)
     })
 
-    it('Should not respond with content-type = application/json', done => {
-      request.post('/api/auth/sign-in')
+    it('should response 200', function (done) {
+      request
+        .post('/api/auth/sign-in')
         .send(testPayload)
-        .expect('content-type', /json/, done)
+        .set('Accept', 'application/json')
+        .expect(200, done)
     })
 
-    it('Should Not respond with error', done => {
-      request.post('/api/auth/sign-in')
-        .send(testPayload)
-        .end((error, res) => {
-          assert.strict.deepEqual(error, null)
-          done()
-        })
-    })
-
-    it('Should respond with right response format', done => {
-      request.post('/api/auth/sign-in')
-        .send(testPayload)
-        .end((_error, res) => {
-          const actual = res.body
-          const expected = {
-            data: user,
-            message: 'User found!'
-          }
-          assert.strict.deepEqual(actual, expected)
-          done()
-        })
-    })
+    // it('Should respond with right status 200', done => {
+    //   request.post('/api/auth/sign-in')
+    //     .send(testPayload)
+    //     .end((_error, res) => {
+    //       const actual = res.body
+    //       const expected = {
+    //         data: usersResultMock,
+    //         message: 'User found!'
+    //       }
+    //       assert.strict.deepEqual(actual, expected)
+    //       done()
+    //     })
+    // })
   })
 })
