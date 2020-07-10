@@ -40,7 +40,7 @@ describe('Routes -> Auth', () => {
         })
     })
 
-    it('Should respond with right response format', done => {
+    it('Should respond with right status 200', done => {
       request.post('/api/auth/sign-up')
         .send(testPayload)
         .end((_error, res) => {
@@ -60,6 +60,31 @@ describe('Routes -> Auth', () => {
             message: 'User created!'
           }
           assert.strict.deepEqual(actual, expected)
+          done()
+        })
+    })
+  })
+
+  // ? sign-in new user
+  describe('POST api/auth', () => {
+    it('Should respond with 401 Not user found or Incorrect Password', done => {
+      request.post('/api/auth/sign-in')
+        .send('')
+        .expect(401, done)
+    })
+
+    it('should response 200', function (done) {
+      request
+        .post('/api/auth/sign-in')
+        .send(testPayload)
+        .expect('Content-type', /json/, done)
+    })
+
+    it('Should Not respond with error', done => {
+      request.post('/api/auth/sign-in')
+        .send(testPayload)
+        .end((error, res) => {
+          assert.strict.deepEqual(error, null)
           done()
         })
     })
