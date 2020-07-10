@@ -64,4 +64,25 @@ describe('Routes -> Auth', () => {
         })
     })
   })
+
+  // ? sign-in new user
+  describe('POST api/auth', () => {
+    it('should respond with status 200', done => {
+      request.post('/api/auth/sign-in')
+        .send(testPayload)
+        .expect(200, done)
+    })
+
+    it('Should respond with content-type = application/json', done => {
+      request.post('/api/auth/sign-in')
+        .send(testPayload)
+        .expect('content-type', /json/, done)
+    })
+
+    it('Should not respond with content-type = application/json', done => {
+      request.post('/api/auth/sign-in')
+        .send(testPayload)
+        .expect('content-type', /json/, done)
+    })
+  })
 })
