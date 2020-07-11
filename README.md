@@ -8,6 +8,7 @@ Application that allows you to:
 # Project
 
 - [Deploy](https://peaceful-bastion-02967.herokuapp.com/)
+- [Routes](https://documenter.getpostman.com/view/11863471/T17CDVqN?version=latest)
 - [Architecture](https://www.notion.so/Architecture-ae55a776829d495eaabe599e93a4a5ef)
 - [Database](https://www.notion.so/Data-Base-b0d54007c8ca4cbcb35d4ce71b801b6c)
 
