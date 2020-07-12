@@ -15,6 +15,10 @@ const createProfile = ({ profile }) => {
   })
 }
 
+const getProfile = ({ profileId }) => {
+  return ProfileSchema.findById(profileId).populate('places')
+}
+
 const addPlace = ({ profileId, placeId }) => {
   return ProfileSchema.findOneAndUpdate({ _id: profileId }, { $push: { places: placeId } })
 }
@@ -38,6 +42,7 @@ const profileIsHost = async ({ tmp }) => {
 
 module.exports = {
   createProfile,
+  getProfile,
   addPlace,
   addFavorite,
   getFavorites,
