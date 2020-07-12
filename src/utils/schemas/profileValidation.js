@@ -14,5 +14,6 @@ const createProfileSchema = {
 }
 
 module.exports = {
-  createProfileSchema
+  createProfileSchema,
+  idSchema
 }
