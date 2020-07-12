@@ -42,20 +42,22 @@ const favoritesRoutes = app => {
   })
 
   // Delete a User Favorite
-  router.delete('/:favoriteId', async (req, res, next) => {
-    const { favoriteId } = req.params
+  router.delete('/', async (req, res, next) => {
+    const { profileId, placeId } = req.body
 
-    try {
-      const { deletedFavorite } = await favoritesService.deleteFavorite({ favoriteId })
-      res.status(200).json({
-        data: {
-          deletedFavorite
-        },
-        message: 'Favorite deleted'
-      })
-    } catch (error) {
-      next(error)
-    }
+    console.log(profileId)
+    console.log(placeId)
+    // try {
+    //   const { deletedFavorite } = await favoritesService.deleteFavorite({ favoriteId })
+    //   res.status(200).json({
+    //     data: {
+    //       deletedFavorite
+    //     },
+    //     message: 'Favorite deleted'
+    //   })
+    // } catch (error) {
+    //   next(error)
+    // }
   })
 }
 
