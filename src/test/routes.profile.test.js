@@ -19,7 +19,6 @@ describe('Routes -> Profile', () => {
       request.post('/api/profile')
         .field('firstname', 'test')
         .field('lastname', 'testy')
-        .field('isHost', 'false')
         .field('userId', '5efd29cf2ff7b505ae60b415')
         .attach('avatar', './src/test/fixtures/profile.png')
         .end((error, res) => {
