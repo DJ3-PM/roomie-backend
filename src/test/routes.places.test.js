@@ -22,12 +22,6 @@ describe('Routes -> Places', () => {
       request.get('/api/places').expect('Content-type', /json/, done)
     })
 
-    it('Should NOT respond with error', done => {
-      request.get('/api/places').end((error, res) => {
-
-      })
-    })
-
     it('Should respond with an Array of Places', done => {
       request.get('/api/places').end((_error, res) => {
         assert.strict.deepEqual(res.body, {
