@@ -20,19 +20,19 @@ This route handles authentication.
 
 ### `/api/favorites`
 
-This route handles favorites.
+This route handles favorites of users.
 
 ### `/api/locations`
 
-This route handles .
+This route handles locations of places.
 
 ### `/api/places`
 
-This route handles .
+This route handles places of users .
 
 ### `/api/profile`
 
-This route handle .
+This route handle profiles of users.
 
 ## Installation
 
