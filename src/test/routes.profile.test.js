@@ -17,8 +17,6 @@ describe('Routes -> Profile', () => {
   describe('POST /api/profile', () => {
     it('Should NOT respond with error', done => {
       request.post('/api/profile')
-        .field('firstname', 'test')
-        .field('lastname', 'testy')
         .field('userId', '5efd29cf2ff7b505ae60b415')
         .attach('avatar', './src/test/fixtures/profile.png')
         .end((error, res) => {
