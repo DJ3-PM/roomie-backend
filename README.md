@@ -56,4 +56,4 @@ Licensed under the [MIT License](/LICENSE).
 - [Jose Cuevas](https://github.com/JoseCrz)
 - [Jesus Montero](https://github.com/jesusmonteroads)
 - [Carlos Ruiz](https://github.com/CharlyRuizM)
-- [Juan Jose Vega](https://github.com/ealexisaraujo)
+- [Juan Jose Vega](https://github.com/juanjosevega99)
