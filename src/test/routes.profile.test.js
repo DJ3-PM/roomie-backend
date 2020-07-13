@@ -15,16 +15,6 @@ describe('Routes -> Profile', () => {
 
   // ? Create new Profile
   describe('POST /api/profile', () => {
-    it('Should NOT respond with error', done => {
-      request.post('/api/profile')
-        .field('userId', '5efd29cf2ff7b505ae60b415')
-        .attach('avatar', './src/test/fixtures/profile.png')
-        .end((error, res) => {
-          assert.strict.deepEqual(error, null)
-          done()
-        })
-    })
-
     it('Should respond with Status 201', done => {
       request.post('/api/profile')
         .field('firstname', 'test')
