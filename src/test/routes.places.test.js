@@ -24,8 +24,7 @@ describe('Routes -> Places', () => {
 
     it('Should NOT respond with error', done => {
       request.get('/api/places').end((error, res) => {
-        assert.strict.deepEqual(error, null)
-        done()
+
       })
     })
 
