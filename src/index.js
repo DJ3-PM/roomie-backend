@@ -13,8 +13,6 @@ const { errorLogger, errorWrapper, errorHandler } = require('./utils/middlewares
 const notFoundHandler = require('./utils/middlewares/notFoundHandler')
 const app = express()
 
-const session = require('express-session')
-
 // ? Stablish database connection
 db.connect()
 
@@ -23,14 +21,6 @@ require('./routes/passport')
 // ? Middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-
-app.use(
-  session({
-    resave: false,
-    saveUninitialized: false,
-    secret: 'xd'
-  })
-)
 
 app.use(passport.initialize())
 app.use(passport.session())
