@@ -1,13 +1,13 @@
 # Buscando Roomie
 Application that allows you to:
-- search the aviable rooms that exist in Medellin
+- search for available rooms that exist in Medellin
 - add the rooms you liked best to a list of favorites
 - contact the owner of the room you liked best so you can rent it
 - in case you want to rent, you can add photos and description of your room so they can contact you
 
 # Project
 
-- [Deploy](https://peaceful-bastion-02967.herokuapp.com/)
+- [Live Demo](https://peaceful-bastion-02967.herokuapp.com/)
 - [Routes](https://documenter.getpostman.com/view/11863471/T17CDVqN?version=latest)
 - [Architecture](https://www.notion.so/Architecture-ae55a776829d495eaabe599e93a4a5ef)
 - [Database](https://www.notion.so/Data-Base-b0d54007c8ca4cbcb35d4ce71b801b6c)
