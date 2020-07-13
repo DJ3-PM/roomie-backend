@@ -36,10 +36,16 @@ const profileIsHost = async ({ tmp }) => {
   }
 }
 
+const deleteFavorite = async ({ profileId, placeId }) => {
+  const xd = await ProfileSchema.findOneAndUpdate({ userId: profileId }, { $pull: { favorites: placeId } })
+  return xd
+}
+
 module.exports = {
   createProfile,
   addPlace,
   addFavorite,
   getFavorites,
-  profileIsHost
+  profileIsHost,
+  deleteFavorite
 }
