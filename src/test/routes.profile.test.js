@@ -48,20 +48,6 @@ describe('Routes -> Profile', () => {
         .expect('Content-type', /json/, done)
     })
 
-    it('Should respond with right response format', done => {
-      request.post('/api/profile')
-        .field('firstname', 'test')
-        .field('lastname', 'testy')
-        .field('isHost', 'false')
-        .field('userId', '5efd29cf2ff7b505ae60b415')
-        .attach('avatar', './src/test/fixtures/profile.png')
-        .end((_error, res) => {
-          const actual = res.body
-          assert.strict.deepEqual(Object.keys(actual), ['data', 'message'])
-          done()
-        })
-    })
-
     it('Should respond with created Profile ID', done => {
       request.post('/api/profile')
         .field('firstname', 'test')
