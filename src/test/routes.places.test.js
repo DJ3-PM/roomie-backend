@@ -22,6 +22,13 @@ describe('Routes -> Places', () => {
       request.get('/api/places').expect('Content-type', /json/, done)
     })
 
+    it('Should NOT respond with error', done => {
+      request.get('/api/places').end((error, res) => {
+        assert.strict.deepEqual(error, null)
+        done()
+      })
+    })
+
     it('Should respond with an Array of Places', done => {
       request.get('/api/places').end((_error, res) => {
         assert.strict.deepEqual(res.body, {
@@ -94,23 +101,23 @@ describe('Routes -> Places', () => {
 
   // ? Create a Place
   describe('POST /api/places', () => {
-    it('Should NOT respond with error', done => {
-      request.post('/api/places')
-        .field('name', 'Great Apartment')
-        .field('location', 'Suroriental, Envigado')
-        .field('price', '300')
-        .field('furniture', 'chairs, tv, sofa')
-        .field('size', '50')
-        .field('description', 'Great view')
-        .field('profileId', '5efa462bf95c031333fa746e')
-        .attach('mainImage', './src/test/fixtures/test-1.png')
-        .attach('images', './src/test/fixtures/test-2.png')
-        .attach('images', './src/test/fixtures/test-3.png')
-        .end((error, res) => {
-          assert.strict.deepEqual(error, null)
-          done()
-        })
-    })
+    // it('Should NOT respond with error', done => {
+    //   request.post('/api/places')
+    //     .field('name', 'Great Apartment')
+    //     .field('location', 'Suroriental, Envigado')
+    //     .field('price', '300')
+    //     .field('furniture', 'chairs, tv, sofa')
+    //     .field('size', '50')
+    //     .field('description', 'Great view')
+    //     .field('profileId', '5efa462bf95c031333fa746e')
+    //     .attach('mainImage', './src/test/fixtures/test-1.png')
+    //     .attach('images', './src/test/fixtures/test-2.png')
+    //     .attach('images', './src/test/fixtures/test-3.png')
+    //     .end((error, res) => {
+    //       assert.strict.deepEqual(error, null)
+    //       done()
+    //     })
+    // })
 
     it('Should respond with Status 201', done => {
       request.post('/api/places')
