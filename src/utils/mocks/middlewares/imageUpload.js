@@ -12,6 +12,8 @@ sinon.stub(imageUpload, 'single')
     }
   })
 
+// TODO:
+// This function is empty
 const mockImageUpload = (req, res, next) => {
 
 }

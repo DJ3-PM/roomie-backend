@@ -32,6 +32,8 @@ const getFavorites = ({ profileId }) => {
 }
 
 const profileIsHost = async ({ tmp }) => {
+  // TODO:
+  // The naming the attr `xd` is not clear for the legibility, what is xd?
   const xd = await ProfileSchema.findOne({ userId: tmp })
   if (xd) {
     return xd
@@ -41,6 +43,8 @@ const profileIsHost = async ({ tmp }) => {
 }
 
 const deleteFavorite = async ({ profileId, placeId }) => {
+  // TODO:
+  // The naming the attr `xd` is not clear for the legibility, what is xd?
   const xd = await ProfileSchema.findOneAndUpdate({ userId: profileId }, { $pull: { favorites: placeId } })
   return xd
 }

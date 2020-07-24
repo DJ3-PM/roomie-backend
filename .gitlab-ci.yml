@@ -1,0 +1,7 @@
+image: node
+
+stages:
+  - test
+
+include:
+  - template: Code-Quality.gitlab-ci.yml
