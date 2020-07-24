@@ -1,4 +1,4 @@
-image: node
+image: docker
 
 stages:
   - test
