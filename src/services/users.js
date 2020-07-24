@@ -8,6 +8,14 @@ const createUser = async ({ user }) => {
   const hashedPassword = await bcrypt.hash(password, 10)
 
   const existingUser = await UserSchema.find({ username })
+  // TODO:
+  // You could return the response here
+  // if (existingUser.length > 0) {
+  //   return Promise.resolve({
+  //     error: 'User already exists',
+  //     createdUserId: null
+  //   })
+  // }
 
   const newUser = {
     username,
@@ -15,6 +23,8 @@ const createUser = async ({ user }) => {
   }
 
   return new Promise((resolve, reject) => {
+    // TODO:
+    // Not is necessary to return this value inside this Promise because the response you already before
     if (existingUser.length > 0) {
       resolve({
         error: 'User already exists',

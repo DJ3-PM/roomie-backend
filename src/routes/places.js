@@ -49,6 +49,8 @@ const placesRoutes = app => {
     async (req, res, next) => {
       const place = req.body
 
+      // TODO:
+      // The attr place.wifi should be a boolean not a string with 'true'
       place.wifi = place.wifi && (place.wifi === 'true')
       place.bath = place.bath && (place.bath === 'true')
       place.parking = place.parking && (place.parking === 'true')

@@ -11,6 +11,11 @@ const locationsRoutes = app => {
       const tmp = await locationsServices.getZones()
       const zones = []
 
+      // TODO:
+      // For avoid using the mutable methods you could use the map and filter methods, like this:
+      // const zones = tmp
+      // .map(zone => element.zona)
+      // .filter(zone => !zones.includes(zone) && zone != null)
       tmp.forEach(element => {
         if (!zones.includes(element.zona) && element.zona != null) {
           zones.push(element.zona)

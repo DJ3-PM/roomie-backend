@@ -36,6 +36,8 @@ const authRoutes = app => {
 
   // User Signin
   router.post('/sign-in', async (req, res, next) => {
+    // TODO:
+    // I recommend the use of array functions and avoid write functions with ES5 syntax
     passport.authenticate('basic', function (error, user) {
       try {
         if (error || !user) {
